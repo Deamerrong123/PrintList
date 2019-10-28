@@ -190,7 +190,27 @@ $$\mu_M = .15$$
 
 9) Compute the return of the market portfolio
 
-$$K_M = []$$
+
+$$ K_{scenario} = 
+\begin{bmatrix}
+.3 & -0.1 & 0.2 & -0.2 \\
+0.1 & 0.3 & -0.1 & -0.4 \\
+-0.2 & 0.3 & 0.3 & 0.3
+\end{bmatrix}
+$$
+
+
+
+
+```{r}
+K.scen <- matrix(c(.3,-0.1,0.2,-.2,.1,.3,-.1,-.4,-.2,.3,.3,-.1),nrow = 3, byrow = T)
+k.m <- w.m %*% K.scen
+k.m
+```
+
+
+$$K_M = [-0.025\ ,0.112\ ,.33\ , -0.087]$$
+
 
 
 10) Find the equation of the CML
@@ -201,7 +221,7 @@ $$\mu = \frac{\mu_M - R}{\sigma_M} + R = \frac{.15 - .05}{.16} + .05 = .63\sigma
 where $.63\sigma$ is called the risk premium.
 
 
-11) Consider a feasible portfolio with allocation w = [.2  .4  .4]. It is given that $Cov(K_M,K_V = .01$. Compute its $\beta_V$.
+11) Consider a feasible portfolio with allocation w = [.2  .4  .4]. It is given that $Cov(K_M,K_V = .011$. Compute its $\beta_V$.
 
 Method 1.
 
@@ -209,7 +229,7 @@ $$\beta_V = \frac{Cov(K_M,K_V)}{\sigma^2_M}$$
 
 
 ```{r}
-beta.v <- .01/val.m^2
+beta.v <- .011/val.m^2
 beta.v
 ```
 
@@ -259,13 +279,6 @@ w.mvl <- mu.ex * a + b
 w.mvl %*% t(m)
 ```
 
-
-[?
-```{r}
-w.fv <- t(c(.48,.30,.25))
-w.fv %*% t(m)
-```
-?]
 
 
 15) How would you allocate the capital amoung risky assets and the risk-free asset if you would like to achieve 9% of expected return with the minimum variance?
